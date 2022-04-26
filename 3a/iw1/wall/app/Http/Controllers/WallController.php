@@ -18,4 +18,27 @@ class WallController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    public function show(Message $message)
+    {
+        return view('messages.show', [
+            'message' => $message
+        ]);
+    }
+
+    public function update(Request $request, Message $message)
+    {
+        $message->update([
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('messages.show', ['message' => $message]);
+    }
+
+    public function delete(Message $message)
+    {
+        $message->delete();
+
+        return redirect()->route('dashboard');
+    }
 }

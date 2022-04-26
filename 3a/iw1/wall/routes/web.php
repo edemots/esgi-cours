@@ -28,12 +28,20 @@ Route::get('/dashboard', function () {
     return view('dashboard', compact('messages'));
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/post-a-message', [WallController::class, 'post'])
+Route::post('/post-a-message', [WallController::class, 'post'])
     ->middleware(['auth'])
     ->name('post-message');
 
-Route::get('/messages/{id}', function (Request $request, $id) {
-    dd($request->id, $id);
-});
+Route::get('/messages/{message}', [WallController::class, 'show'])
+    ->middleware(['auth'])
+    ->name('messages.show');
+
+Route::patch('/messages/{message}', [WallController::class, 'update'])
+    ->middleware(['auth'])
+    ->name('messages.update');
+
+Route::delete('/messages/{message}', [WallController::class, 'delete'])
+    ->middleware(['auth'])
+    ->name('messages.delete');
 
 require __DIR__.'/auth.php';
