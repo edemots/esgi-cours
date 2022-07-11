@@ -2,22 +2,27 @@
 
 function dfs($tree)
 {
+    // Préfixe
     // echo "{$tree['value']}\t";
     if ($tree['left']) {
         dfs($tree['left']);
     }
+    // Infixe
+    // echo "{$tree['value']}\t";
     if ($tree['right']) {
         dfs($tree['right']);
     }
+    // Suffixe
+    // echo "{$tree['value']}\t";
 }
 
 function bfs($tree)
 {
-    // echo "{$tree['value']}\t";
+    echo "{$tree['value']}\t";
     $queue = [$tree['left'], $tree['right']];
     while (count($queue) > 0) {
         $item = array_shift($queue);
-        // echo "{$item['value']}\t";
+        echo "{$item['value']}\t";
         if ($item['left']) {
             array_push($queue, $item['left']);
         }
@@ -26,10 +31,6 @@ function bfs($tree)
         }
     }
     // echo "\n";
-}
-
-function dijkstra($tree)
-{
 }
 
 $tree = [
